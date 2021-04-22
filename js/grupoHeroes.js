@@ -34,14 +34,14 @@ export function create(spawn, allTiles, antorchas, conf)
 	boxTank.create(spawn, allTiles, heroes, armasHeroicas);
 
 	numHeroes = heroes.getLength();
-	console.log(numHeroes);
+	//console.log(numHeroes);
 
 	for (var i = 0; i < numHeroes; i++)
 	{
 		fila.unshift(heroes.getChildren()[i]);
 	}
 
-	console.log(fila[0]);
+	//console.log(fila[0]);
 	cabeza = fila[0]
 	scene.cameras.main.startFollow(cabeza, true);
 
@@ -68,7 +68,7 @@ export function update()
 	{
 		var parte = caminoTemp.pop();
 		parte.setTo(cabeza.x, cabeza.y);
-		console.log(parte)
+		//console.log(parte)
 		parte.look = cabeza.look
 		caminoTemp.unshift(parte);
 		//se le da a cada miembro del grupo su nueva posición
@@ -88,7 +88,7 @@ export function update()
 	{
 		numCabeza++;
 		numCabeza = numCabeza % numHeroes;
-		console.log(numCabeza)
+		//console.log(numCabeza)
 
 		//cabeza = heroes.getChildren()[numCabeza]
 		cambiarCabeza();

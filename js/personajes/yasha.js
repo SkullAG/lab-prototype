@@ -210,7 +210,7 @@ function generarHielo()
 		h.setCircle(2, 14, 14);
 
 		scene.physics.add.collider(h, allLayers);
-		console.log(h)
+		//console.log(h)
 
 		contHielo = 30;
 

@@ -36,7 +36,7 @@ export function create(capa)
 
 			obj.setTexture('portal')
 			scene.physics.world.enable(obj);
-			console.log(obj)
+			//console.log(obj)
 			obj.setSize(4, 4)
 			//obj.scale = 0.5
 			obj.body.height = 4

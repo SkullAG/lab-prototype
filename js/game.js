@@ -227,7 +227,7 @@ function create()
 
 	npc = map.createFromObjects('Capa de Objetos 2');
 
-	console.log(npc)
+	//console.log(npc)
 
 	gates = portal.create(npc);
 
