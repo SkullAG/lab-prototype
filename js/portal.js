@@ -90,6 +90,8 @@ function teleport(obj, entity)
 	//console.log(obj.name);
 	if (obj.coolDown <= 0 && tiempoActivo == 10)
 	{
+		//console.log(obj.x);
+		//console.log(obj);
 		obj.coolDown = coolDown
 		obj.destino.coolDown = coolDown
 
