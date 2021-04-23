@@ -4,7 +4,7 @@
      "export":
         {
          "format":"json",
-         "target":"E:\/Base de datos\/Xampp\/htdocs\/proyecto\/assets\/mapa\/lab.json"
+         "target":"lab.json"
         }
     },
  "height":100,
@@ -529,7 +529,7 @@
                         {
                          "name":"destino",
                          "type":"int",
-                         "value":4
+                         "value":3
                         }, 
                         {
                          "name":"puerta",
@@ -552,7 +552,7 @@
                         {
                          "name":"destino",
                          "type":"int",
-                         "value":5
+                         "value":6
                         }, 
                         {
                          "name":"puerta",
@@ -575,7 +575,7 @@
                         {
                          "name":"destino",
                          "type":"int",
-                         "value":3
+                         "value":5
                         }, 
                         {
                          "name":"puerta",
@@ -598,12 +598,12 @@
                         {
                          "name":"destino",
                          "type":"int",
-                         "value":6
+                         "value":4
                         }, 
                         {
                          "name":"puerta",
                          "type":"int",
-                         "value":0
+                         "value":3
                         }],
                  "rotation":0,
                  "type":"",
@@ -622,13 +622,13 @@
  "nextobjectid":75,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.4.3",
+ "tiledversion":"1.5.0",
  "tileheight":32,
  "tilesets":[
         {
          "columns":4,
          "firstgid":1,
-         "image":"E:\/Base de datos\/Xampp\/htdocs\/proyecto\/assets\/mapa\/Labspritesheet.png",
+         "image":"Labspritesheet.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,
@@ -786,7 +786,7 @@
         {
          "columns":32,
          "firstgid":17,
-         "image":"E:\/ProyectoPhaser\/Textura\/terrain.png",
+         "image":"..\/..\/..\/..\/..\/..\/ProyectoPhaser\/Textura\/terrain.png",
          "imageheight":1024,
          "imagewidth":1024,
          "margin":0,
@@ -24487,7 +24487,7 @@
         {
          "columns":1,
          "firstgid":1041,
-         "image":"E:\/Base de datos\/Xampp\/htdocs\/proyecto\/assets\/mapa\/maniquiReal.png",
+         "image":"maniquiReal.png",
          "imageheight":48,
          "imagewidth":32,
          "margin":0,
@@ -24529,6 +24529,6 @@
         }],
  "tilewidth":32,
  "type":"map",
- "version":1.4,
+ "version":1.5,
  "width":100
 }

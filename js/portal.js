@@ -2,7 +2,7 @@ import * as utilidades from './utilidades.js';
 import * as boxTank from './personajes/boxTank.js';
 
 var portals = new Array();
-var coolDown = 120
+var coolDown = 30
 var scene
 var tiempoActivo = 0;
 
