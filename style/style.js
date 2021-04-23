@@ -6,7 +6,7 @@ function loadEvents()
 
 	document.getElementById("gameBorder").style.height = (3/4*mystring) + "px";
 
-	alert(document.getElementById("game")).margin)
+	//alert(document.getElementById("game")).margin)
 
 	window.addEventListener('resize', resize)
 }
