@@ -55,6 +55,7 @@ var tiempoEntreHuellas = 0;
 
 export var scene;
 
+var fpsText;
 var paredes;
 var elementosMapa;
 var elementosMapa2;
@@ -95,6 +96,8 @@ var gates
 function create()
 {
 	scene = this;
+
+  /*fpsText = this.add.text(16,32,'FPS: '+ game.loop.actualFps,{fontsize:'8px',fill:'#FFF'}).setScrollFactor(0).setScrollFactor(0);*/
 
 	//boxTank.createAnims()
 	portal.createAnims()
@@ -361,11 +364,15 @@ function fallDeath(pj, layer)
 	}
 }
 
-function update()
+function update(time, delta)
 {
 	//console.log(pointer)
 	//console.log(Keys)
 	heroes.update();
+	//alert(time + " -- "+ delta)
+	delta = 16;
+
+	//fpsText.text = "FPS: "+game.loop.actualFps;
 
 	//tiempoEntreHuellas--;
 
