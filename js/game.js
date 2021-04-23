@@ -24,7 +24,11 @@ export var config={
 			//BoxTank
 		},
 		scale:{
-			zoom: 2,
+			//mode: Phaser.Scale.FIT,
+			parent: 'game',
+			mode: Phaser.Scale.ENVELOPE,
+        	//autoCenter: Phaser.Scale.CENTER_BOTH,
+			//zoom: 2,
 		},
 };
 

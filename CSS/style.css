@@ -1,0 +1,24 @@
+html{
+	background-color: yellow;
+	image-rendering: pixelated;
+}
+#game{
+	float: none;
+	background-color: blue;
+	//margin-left: auto;
+	//margin-right: auto;
+	//border: 10px solid black;
+}
+#gameBorder{
+	float: none;
+	//background-color: green;
+	width: 75%;
+	//padding-top: calc(600 / 800 * 100%);
+	margin-left: auto;
+	margin-right: auto;
+
+	border: silver 100px solid;
+	border-width: 80px 16px 16px 16px;
+	border-image-source: url("../assets/pageStyle/AutoAAIM_rework.png");
+	border-image-slice: 10 2 2 2;
+}
