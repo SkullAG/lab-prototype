@@ -155,7 +155,7 @@ export function generatebala()
 
 	b.setVelocityX(balaVelocidad*b.dir.x);
 	b.setVelocityY(balaVelocidad*b.dir.y);
-
+  
 
 	b.proyectil = scene.add.sprite(player.x, player.y,'bala').setDepth(16);
 
