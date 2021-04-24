@@ -10,6 +10,10 @@ export var config={
 		width:400,
 		height:300,
 		pixelArt: true,
+		fps: {
+			target: 60,
+			forceSetTimeOut: true
+		},
 		physics:{
 			default:'arcade',
 			arcade:{
@@ -370,7 +374,6 @@ function update(time, delta)
 	//console.log(Keys)
 	heroes.update();
 	//alert(time + " -- "+ delta)
-	delta = 16;
 
 	//fpsText.text = "FPS: "+game.loop.actualFps;
 
