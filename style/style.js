@@ -33,6 +33,6 @@ function suffer()
 	.then(data => {
 		// Do something with your data
 		document.getElementById("asciiShit").innerHTML = data
-		console.log(data);
+		//console.log(data);
 	});
 }
