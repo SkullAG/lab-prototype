@@ -22,6 +22,6 @@ html{
 
 	border: silver 100px solid;
 	border-width: 80px 16px 16px 16px;
-	border-image-source: url("../assets/pageStyle/AutoAAIM_rework.png");
+	border-image-source: url("../assets/pageStyle/AutoAAIM_rework+text.png");
 	border-image-slice: 10 2 2 2;
 }
