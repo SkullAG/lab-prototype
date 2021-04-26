@@ -31,10 +31,10 @@ html{
 #zoomDiv{
 	float: right;
 	//position: absolute;
-	margin-top: 30px;
+	margin-top: 100px;
 	width: 12%;
 	height: 60px;
-	background-color: red;
+	background-color: silver;
 }
 #zoomControl
 #zoomLog
