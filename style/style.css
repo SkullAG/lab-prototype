@@ -25,3 +25,16 @@ html{
 	border-image-source: url("../assets/pageStyle/AutoAAIM_rework+text.png");
 	border-image-slice: 10 2 2 2;
 }
+#asciiShit{
+	font-size: 8px;
+}
+#zoomDiv{
+	float: right;
+	//position: absolute;
+	margin-top: 30px;
+	width: 12%;
+	height: 60px;
+	background-color: red;
+}
+#zoomControl
+#zoomLog

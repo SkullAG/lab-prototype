@@ -5,3 +5,4 @@ Yea, I know this is called Readme, but please this is bad writen and they're onl
 
 now i'm using replit... I think that at least it's working, don't it?
 
+YES it's working! And it's awesome!!!
