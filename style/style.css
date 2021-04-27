@@ -27,6 +27,8 @@ html{
 }
 #asciiShit{
 	font-size: 8px;
+	background-color: rgb(255, 255, 255);
+	position: absolute;
 }
 #zoomDiv{
 	float: right;

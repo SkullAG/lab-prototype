@@ -132,12 +132,12 @@ function create()
 	const tileset2 = map.addTilesetImage('terrain', 'terraintiles');
 	const tileset3 = map.addTilesetImage('maniquiReal', 'maniquiReal');
 	const allTilesets = [tileset, tileset2, tileset3];
-	map.createLayer('Capa de patrones 1', allTilesets).setDepth(0);
-	paredes = map.createLayer('Capa de patrones 2', allTilesets).setDepth(0);
-	elementosMapa = map.createLayer('Capa de patrones 5', allTilesets).setDepth(0);
-	elementosMapa2 = map.createLayer('Capa de patrones 6', allTilesets).setDepth(1);
-	obstaculos1 = map.createLayer('Capa de patrones 3', allTilesets).setDepth(10);
-	obstaculos2 = map.createLayer('Capa de patrones 4', allTilesets).setDepth(10);
+	map.createLayer('fondo', allTilesets).setDepth(0);
+	paredes = map.createLayer('salas', allTilesets).setDepth(0);
+	elementosMapa = map.createLayer('elementosSuelo', allTilesets).setDepth(0);
+	elementosMapa2 = map.createLayer('elementosSuelo2', allTilesets).setDepth(1);
+	obstaculos1 = map.createLayer('obstaculos', allTilesets).setDepth(10);
+	obstaculos2 = map.createLayer('obstaculos2', allTilesets).setDepth(10);
 	obstaculosManiqui = map.createLayer('maniquis', allTilesets).setDepth(10);
 
 	allLayers = [paredes, obstaculos1, obstaculos2, obstaculosManiqui]
