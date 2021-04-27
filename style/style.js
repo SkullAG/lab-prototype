@@ -3,8 +3,6 @@ function loadEvents()
 {
 	resize();
 
-	//alert(document.getElementById("game")).margin)
-
 	window.addEventListener('resize', resize)
 	suffer()
 
@@ -43,8 +41,8 @@ function resize()
 	document.getElementById("gameBorder").style.borderWidth = (5.5*mystring)+"px "+mystring+"px "+mystring+"px "+mystring+"px "
 	
 	//console.log(getComputedStyle(document.getElementById("page")).width + screen.width)
-}//border-width = borderWidth
-//document.getElementById("myBtn").style.height = "50px";
+}
+
 //resize
 
 var asciiart
