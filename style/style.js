@@ -11,14 +11,14 @@ function loadEvents()
 	document.addEventListener('keydown', (e) => {
 		if (!e.repeat && e.key == "+"){
 			//console.log(`Key "${e.key}" pressed  [event: keydown]`);
-			console.log("+"+document.getElementById("gameBorder").style.width)
+			//console.log("+"+document.getElementById("gameBorder").style.width)
 			zoom += 5;
 			document.getElementById("gameBorder").style.width = zoom+"%";
 			resize();
 		}
 		if (!e.repeat && e.key == "-"){
 			//console.log(`Key "${e.key}" pressed  [event: keydown]`);
-			console.log("-")
+			//console.log("-")
 			zoom -= 5;
 			document.getElementById("gameBorder").style.width = zoom+"%";
 			resize();
@@ -32,6 +32,8 @@ function resize()
 {
 	var mystring = getComputedStyle(document.getElementById("game")).width;
 	mystring = mystring.replace('px','');
+
+	document.getElementById("zoomLog").innerText = zoom+'%';
 
 	document.getElementById("gameBorder").style.height = (3/4*mystring) + "px";
 
