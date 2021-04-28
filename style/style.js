@@ -49,7 +49,7 @@ var asciiart
 
 function suffer()
 {
-	var num = Math.floor(Math.random()*5)+1;
+	var num = Math.floor(Math.random()*6)+1;
 	console.log('sufferAscii: '+num)
 	fetch('style/suffer'+num+'.txt')
 	.then(response => response.text())
