@@ -1,5 +1,6 @@
 import * as boxTank from './personajes/boxTank.js';
 import * as yasha from './personajes/yasha.js';
+import * as glish from './personajes/glish.js';
 import * as keys from './keys.js';
 
 export function preload()
@@ -7,7 +8,7 @@ export function preload()
 	scene = this;
 	boxTank.preload.call(this);
 	yasha.preload.call(this);
-	//glish.preload.call(this);
+	glish.preload.call(this);
 }
 
 var scene;
@@ -31,7 +32,9 @@ export function create(spawn, allTiles, antorchas, conf)
 	heroes = scene.physics.add.group();
 
 	yasha.create(spawn, allTiles, antorchas, conf, heroes, armasHeroicas);
+  glish.create(spawn, allTiles, conf, heroes, armasHeroicas);
 	boxTank.create(spawn, allTiles, heroes, armasHeroicas);
+
 
 	numHeroes = heroes.getLength();
 	//console.log(numHeroes);
@@ -42,7 +45,7 @@ export function create(spawn, allTiles, antorchas, conf)
 	}
 
 	//console.log(fila[0]);
-	cabeza = fila[0]
+	cabeza = fila[0];
 	scene.cameras.main.startFollow(cabeza, true);
 
 	//Crea una array de puntos, estos seran el camino que deben seguir
@@ -60,6 +63,7 @@ export function create(spawn, allTiles, antorchas, conf)
 export function update()
 {
 	boxTank.update(cabeza);
+	glish.update(cabeza);
 	yasha.update(cabeza);
 
 

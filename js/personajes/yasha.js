@@ -39,7 +39,8 @@ export function create(spawn, allTiles, antorchas, conf, grupo, arHe)
 	player.name = "yasha"
 	player.heroe = true;
 	player.inmovil = false;
-	player.vida = 8;
+  player.maxVida = 8;
+  player.vida = player.maxVida;
 	player.setOrigin(0.5);
 
 	grupoFuego = scene.physics.add.group();
