@@ -1,6 +1,7 @@
 //import BoxTank from './boxTank.js';
 import * as boxTank from './personajes/boxTank.js';
 import * as shapeShifter from './shapeShifter.js';
+import * as scyther from './scyther.js';
 import * as keys from './keys.js';
 import * as portal from './portal.js';
 import * as heroes from './grupoHeroes.js';
@@ -17,7 +18,7 @@ export var config={
 		physics:{
 			default:'arcade',
 			arcade:{
-				debug: false,
+				debug: true,
 				gravity:{y:0}
 			}
 		},
@@ -52,6 +53,7 @@ function preload()
 	heroes.preload.call(this)
 	portal.preload.call(this)
 	shapeShifter.preload.call(this)
+	scyther.preload.call(this)
 }
 
 var tiempoEntreSpawn = 60;
@@ -244,6 +246,8 @@ function create()
 
 	shapeShifter.create(allLayers);
 
+	scyther.create(allLayers);
+
 	scene.physics.add.overlap(heroes.heroes, shapeShifter.shapeShifterGroup, heroes.herir, null, scene);
 
 	npc.forEach(obj => {
@@ -253,6 +257,12 @@ function create()
 			//shapeShifterGroup.add(obj)
 			obj.setAlpha(0)
 			shapeShifter.createShapeshifter(obj);
+		}
+		if(obj.name == 'scyther')
+		{
+			//shapeShifterGroup.add(obj)
+			obj.setAlpha(0)
+			scyther.createScyther(obj);
 		}
 		if(obj.name == 'SkullAG')
 		{
