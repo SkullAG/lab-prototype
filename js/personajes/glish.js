@@ -69,6 +69,7 @@ export function create(spawn, allLayers, conf, grupo, arHe) {
 
   config = conf;
 
+
 }
 
 export function update(cabeza) {
@@ -79,21 +80,17 @@ export function update(cabeza) {
 	{
 		moverPersonaje.call(scene);
 		updateCursor();
-
-		if (pointer.isDown && tiempo == 0) {
-		ondasRockeras.call(scene);
+  	if (pointer.isDown && tiempo == 0) {
+		  ondasRockeras.call(scene);
 		}
 		if (keys.Hability.isDown && tiempo2 == 0) {
-		heavyMetal.call(scene);
+		  heavyMetal.call(scene);
 		}
-
-
-		atacarPersonaje.call(scene);
-
 		updateEstadosDelJugador.call(scene);
 		cursor.setAlpha(1)
 	}
 	else{cursor.setAlpha(0)}
+	atacarPersonaje.call(scene);
 }
 
 function createCursor() {
@@ -116,27 +113,34 @@ function moverPersonaje() {
   if (player.body != undefined && player.enCabeza) {
     if(keys.Up.isDown){
       player.move = true;
-      player.setVelocityY(-velocity + relentizar);
+      player.movingY = -1//(-velocity + relentizar);
 	  player.look = "up"
 
     }else if(keys.Down.isDown){
       player.move = true;
-      player.setVelocityY(velocity - relentizar);
+      player.movingY = 1;
 	  player.look = "down"
 
-    }else {player.setVelocityY(0); }
+    }else {player.movingY = 0; }
 
     if(keys.Right.isDown){
       player.move = true;
-      player.setVelocityX(velocity - relentizar);
+      player.movingX = 1;
 	  player.look = "right"
 
     } else if(keys.Left.isDown){
       player.move = true;
-      player.setVelocityX(-velocity + relentizar);
+      player.movingX = -1;
 	  player.look = "left"
 
-    } else {player.setVelocityX(0); }
+    } else {player.movingX = 0; }
+
+		player.dir = new Phaser.Math.Vector2( player.movingX, player.movingY);
+		player.dir.normalize();
+		player.setVelocityX(velocity*player.dir.x);
+		player.setVelocityY(velocity*player.dir.y);
+		if(player.dir.x != 0 || player.dir.y != 0) {player.move = true;}
+		else{player.move = false;}
 
   }
 
@@ -163,15 +167,12 @@ function ondasRockeras() {
 function heavyMetal() {
 
   ondaCura = ondaList.create(player.x, player.y, 'cura');
-
-  for(var m = 0; m < grupoHeroes.heroes.getChildren(); m++){
-    if (grupoHeroes.heroes[m].vida < grupoHeroes.heroes[m].maxVida) {
-    grupoHeroes.heroes[m].vida += 3;
+  Phaser.Actions.Call(grupoHeroes.heroes.getChildren(), function(algo) {
+    if (algo.vida < algo.maxVida) {
+      algo.vida += 3;
     }
-  }
-  /*if (player.vida < player.maxVida) {
-    player.vida += 3;
-  }*/
+
+  } );
 
   ondaCura.scale = 0.4;
   ondaCura.limite = 5;

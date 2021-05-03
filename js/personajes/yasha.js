@@ -39,8 +39,8 @@ export function create(spawn, allTiles, antorchas, conf, grupo, arHe)
 	player.name = "yasha"
 	player.heroe = true;
 	player.inmovil = false;
-  player.maxVida = 8;
-  player.vida = player.maxVida;
+	player.maxVida = 8;
+  	player.vida = player.maxVida;
 	player.setOrigin(0.5);
 
 	grupoFuego = scene.physics.add.group();
@@ -212,6 +212,7 @@ function generarHielo()
 
 		scene.physics.add.collider(h, allLayers);
 		//console.log(h)
+		
 
 		contHielo = 30;
 
