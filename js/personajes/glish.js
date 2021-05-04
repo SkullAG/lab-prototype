@@ -47,6 +47,7 @@ export function create(spawn, allLayers, conf, grupo, arHe) {
   player.heroe = true;
   player.status = "none";
   player.maxVida = 10;
+  player.setCircle(16, 0);
   player.vida = player.maxVida;
   player.tiempoStatus = 0;
   player.inmune = false;

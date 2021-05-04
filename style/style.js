@@ -1,6 +1,9 @@
 
 function loadEvents()
 {
+	console.log("Izan's repl https://ProyectoIFP-1.oscurio01.repl.co")
+	console.log("Maria's repl https://IcePrototype.marialopezifp.repl.co")
+	console.log("My repl https://lab-prototype.skullag.repl.co")
 	resize();
 
 	window.addEventListener('resize', resize)

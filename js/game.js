@@ -18,7 +18,7 @@ export var config={
 		physics:{
 			default:'arcade',
 			arcade:{
-				debug: true,
+				debug: false,
 				gravity:{y:0}
 			}
 		},
@@ -262,7 +262,7 @@ function create()
 		{
 			//shapeShifterGroup.add(obj)
 			obj.setAlpha(0)
-			scyther.createScyther(obj);
+			//scyther.createScyther(obj);
 		}
 		if(obj.name == 'SkullAG')
 		{

@@ -38,6 +38,7 @@ export function create(spawn, allTiles, antorchas, conf, grupo, arHe)
 	player = grupo.create(spawn.x,spawn.y, 'Yasha').setDepth(5);
 	player.name = "yasha"
 	player.heroe = true;
+	player.setCircle(16, 0);
 	player.inmovil = false;
 	player.maxVida = 8;
   	player.vida = player.maxVida;
