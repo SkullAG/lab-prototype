@@ -7,7 +7,7 @@ function loadEvents()
 	resize();
 
 	window.addEventListener('resize', resize)
-	suffer()
+	suffer()// descomentar
 
 	document.addEventListener('keydown', (e) => {
 		if (!e.repeat && e.key == "+"){
@@ -27,7 +27,7 @@ function loadEvents()
 	});
 }
 
-var zoom = 65;
+var zoom = 50;
 
 function resize()
 {

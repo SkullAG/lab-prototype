@@ -170,7 +170,12 @@ function heavyMetal() {
   ondaCura = ondaList.create(player.x, player.y, 'cura');
   Phaser.Actions.Call(grupoHeroes.heroes.getChildren(), function(algo) {
     if (algo.vida < algo.maxVida) {
-      algo.vida += 3;
+      algo.vida += 2;
+      algo.status = "none";
+      relentizar = 0;
+    }
+    if(algo.vida > algo.maxVida){
+      algo.vida = algo.maxVida;
     }
 
   } );
@@ -224,11 +229,7 @@ function atacarPersonaje() {
 
     if (go.scale <= go.limite) {
       go.scale += 0.07;
-      if (player.vida > 10) {
-        player.vida = 10;
-      }
-      player.status = "none";
-      relentizar = 0;
+
     }
     if (go.scale != null) {
       go.setScale(go.scale);

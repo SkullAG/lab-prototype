@@ -14,5 +14,5 @@ export function create(scene)
 	Left = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
 	Right = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 	Hability = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-	P = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
+	P = scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
 }

@@ -262,7 +262,7 @@ function create()
 		{
 			//shapeShifterGroup.add(obj)
 			obj.setAlpha(0)
-			//scyther.createScyther(obj);
+			scyther.createScyther(obj);
 		}
 		if(obj.name == 'SkullAG')
 		{

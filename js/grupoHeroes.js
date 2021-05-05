@@ -26,7 +26,7 @@ var tEntreCambio = 0;
 export function create(spawn, allTiles, antorchas, conf)
 {
 	//el espacio entre elementos de la fila
-	espacioEntreHeroes = 16;
+	espacioEntreHeroes = 12;
 
 	//el grupo de elementos de la fila
 	heroes = scene.physics.add.group();
@@ -102,8 +102,11 @@ export function update()
 
 function cambiarCabeza()
 {
-	var personaje = fila.pop();
-	fila.unshift(personaje);
+	for(var i = 0; i < numHeroes-1; i++)
+	{
+		var personaje = fila.pop();
+		fila.unshift(personaje);
+	}
 
 	cabeza = fila[0];
 	scene.cameras.main.startFollow(cabeza, true);
