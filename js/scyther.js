@@ -36,7 +36,7 @@ export function createScyther(obj)
 
 	s.detectionbox.detectado = false;
 	s.time = 0
-	s.cooldown = 60;
+	s.cooldown = 120;
 
 	createSegmentos(s)
 
@@ -88,16 +88,29 @@ function calcularSegmento(parent)
 
 				for(var i=0; i<parent.segmentos.getLength(); i++)
 				{
-					var temp = parent.segmentos.getLength()-i;
-					if(value-i>0)
+					var temp = parent.segmentos.getLength()-1-i;
+					if(value-temp>0)
 					{
-						parent.segmentos.getChildren()[i].x = parent.x + guadana.width*((value-temp)*dir.x)
-						parent.segmentos.getChildren()[i].y = parent.y + guadana.height*((value-temp)*dir.y)
+						//parent.segmentos.getChildren()[i].x = parent.x + 8*((value-temp)*dir.x)
+
+						/*var vec = (parent.segmentos.getChildren()[i].yini * ((parent.segmentos.getLength()-i)/parent.segmentos.getLength())) + (parent.y * (i/parent.segmentos.getLength()))*/
+
+						scene.physics.moveTo(parent.segmentos.getChildren()[i],
+							parent.x + 8*((value-temp)*dir.x),
+							parent.y + ((8*((value-temp)*dir.y))),
+							20*i
+						);
+
+						//parent.segmentos.getChildren()[i].moveTo(vec + ((8*((value-temp)*dir.y)))) 
+
+
 					}
 					else
 					{
-						parent.segmentos.getChildren()[i].x = parent.x
-						parent.segmentos.getChildren()[i].y = parent.y
+						parent.segmentos.getChildren()[i].x = parent.segmentos.getChildren()[i].xini
+						parent.segmentos.getChildren()[i].y = parent.segmentos.getChildren()[i].yini
+						parent.segmentos.getChildren()[i].setVelocityX(0)
+						parent.segmentos.getChildren()[i].setVelocityY(0)
 					}
 				}
 			},
@@ -135,7 +148,7 @@ export function update()
 	Phaser.Actions.Call(scytherGroup.getChildren(),function(s)
 	{
 		var guadana = s.segmentos.getChildren()[s.segmentos.getLength()-1]
-		guadana.angle = Math.atan2(heroes.cabeza.y - guadana.y, heroes.cabeza.x - guadana.x)* 180/Math.PI;
+		guadana.angle = Math.atan2(heroes.cabeza.y - s.y, heroes.cabeza.x - s.x)* 180/Math.PI;
 		if(guadana.angle > 90 || guadana.angle < -90)
 		{
 			guadana.flipY = true;
