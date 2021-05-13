@@ -7,6 +7,8 @@ now i'm using replit... I think that at least it's working, don't it?
 
 YES it's working! And it's awesome!!!
 
+heroku is absolute hell, hep please...
+
 Izan's repl https://ProyectoIFP-1.oscurio01.repl.co
 Maria's repl https://IcePrototype.marialopezifp.repl.co
 My repl https://lab-prototype.skullag.repl.co
