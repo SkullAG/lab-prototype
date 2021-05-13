@@ -195,25 +195,7 @@ function create()
 
 	huellas = this.add.group();
 
-	//console.log(pointer)
-
-	//this.cameras.main.startFollow(boxTank.player, true);
 	scene.cameras.main.setLerp(0.1, 0.1);
-
-
-	/*keys = {
-		'KeyUp': this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W),
-	}
-
-	this.Keys.KeyUp=this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-	this.Keys.KeyDown=this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-	this.Keys.KeyLeft=this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-	this.Keys.KeyRight=this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-	this.Keys.Hability=this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-
-	this.Keys.KeyP=this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
-
-	//Keys = [KeyUp,KeyDown,KeyLeft,KeyRight,Hability,KeyP]*/
 
 	deadlyTiles = elementosMapa.filterTiles(tile => tile.properties.deadly).map(x => x.index);
 
@@ -222,6 +204,14 @@ function create()
 	huellasTiles = elementosMapa.filterTiles(tile => tile.properties.huellas).map(x => x.index);
 
 	elementosMapa.setTileIndexCallback(huellasTiles, createHuellas, this.physics.add.overlap(heroes.heroes, elementosMapa));
+
+	deadlyTiles = elementosMapa2.filterTiles(tile => tile.properties.deadly).map(x => x.index);
+
+	elementosMapa2.setTileIndexCallback(deadlyTiles, fallDeath, this.physics.add.overlap(heroes.heroes, elementosMapa2));
+
+	huellasTiles = elementosMapa2.filterTiles(tile => tile.properties.huellas).map(x => x.index);
+
+	elementosMapa2.setTileIndexCallback(huellasTiles, createHuellas, this.physics.add.overlap(heroes.heroes, elementosMapa2));
 	//elementosMapa.setTileIndexCallback(huellasTiles, createHuellas, this.physics.add.overlap(player, elementosMapa))
 
 	destructibleTiles1 = obstaculos1.filterTiles(tile => tile.properties.destructible).map(x => x.index);
@@ -391,6 +381,7 @@ function update(time, delta)
 
 	//updateHuellas();
 	shapeShifter.update()
+	scyther.update()
 
 	if (tiempoEntreHuellas <= 0)
 	{

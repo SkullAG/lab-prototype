@@ -24,6 +24,7 @@ var ondaDeDanyo;
 var ondaCura;
 var vidaText;
 var armasHeroicas;
+var layers;
 
 import * as keys from '../keys.js';
 import * as utilidades from '../utilidades.js';
@@ -69,7 +70,7 @@ export function create(spawn, allLayers, conf, grupo, arHe) {
   relentizar = 0;
 
   config = conf;
-
+  layers = allLayers;
 
 }
 
@@ -161,6 +162,8 @@ function ondasRockeras() {
     go.dir.normalize();
   });
 
+  scene.physics.add.collider(beamList, layers);
+  
   armasHeroicas.unshift(ondaDeDanyo);
 
 }

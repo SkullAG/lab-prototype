@@ -21,7 +21,7 @@ export function create(allLayers)
 
 export function createScyther(obj)
 {
-	var s = scytherGroup.create(obj.x, obj.y, 'scyther')
+	var s = scytherGroup.create(obj.x, obj.y, 'scyther', 3)
 	s.inmovil = false;
 	s.dano = 1;
 	//s.setTexture('shapeshifter');
@@ -29,11 +29,16 @@ export function createScyther(obj)
 
 	s.setDepth(4);
 	s.vida = 8;
+	s.maxLong = 10;
 
 	s.detectionbox = scene.add.rectangle(s.x, s.y, 200, 200);
 	scene.physics.add.existing(s.detectionbox, false);
 
 	s.detectionbox.detectado = false;
+	s.time = 0
+	s.cooldown = 60;
+
+	createSegmentos(s)
 
 	scene.physics.add.overlap(heroes.heroes, s.detectionbox, detectarJugador, null, scene);
 
@@ -42,6 +47,83 @@ export function createScyther(obj)
 	//scene.physics.add.collider(s, scytherGroup);
 }
 
+function createSegmentos(parent)
+{
+	parent.segmentos = scene.physics.add.group();;
+	for(var i = 1; i < parent.maxLong; i++)
+	{
+		if(i < parent.maxLong/2)
+		{
+			var parte = parent.segmentos.create(parent.x,parent.y-i*4, 'scyther', 2)
+		}
+		else
+		{
+			var parte = parent.segmentos.create(parent.x,parent.y-i*4, 'scyther', 1)
+		}
+
+		parte.xini = parte.x
+		parte.yini = parte.y
+    	parte.ataque = 1;
+	}
+
+	var cabeza = parent.segmentos.create(parent.x,parent.y-parent.maxLong*4, 'scyther', 0)
+  	cabeza.ataque = 1;
+	cabeza.xini = cabeza.x
+	cabeza.yini = cabeza.y
+	//l.segmentos.unshift(cabeza);
+}
+
+function calcularSegmento(parent)
+{
+	var guadana = parent.segmentos.getChildren()[parent.segmentos.getLength()-1]
+	var dir = new Phaser.Math.Vector2( Math.cos(guadana.angle*Math.PI/180), Math.sin(guadana.angle*Math.PI/180));
+	scene.tweens.addCounter({
+			from: 0,
+			to: parent.segmentos.getLength(),
+			duration: 500,
+      		yoyo: true,
+			onUpdate: function (tween)
+			{
+				var value = tween.getValue()
+
+				for(var i=0; i<parent.segmentos.getLength(); i++)
+				{
+					var temp = parent.segmentos.getLength()-i;
+					if(value-i>0)
+					{
+						parent.segmentos.getChildren()[i].x = parent.x + guadana.width*((value-temp)*dir.x)
+						parent.segmentos.getChildren()[i].y = parent.y + guadana.height*((value-temp)*dir.y)
+					}
+					else
+					{
+						parent.segmentos.getChildren()[i].x = parent.x
+						parent.segmentos.getChildren()[i].y = parent.y
+					}
+				}
+			},
+			onComplete: function()
+			{
+			}
+		});
+
+}
+
+/*function updateSegmentos(parent){
+	if(l.time <= 0)
+	{
+		l.time = l.cooldown;
+
+		createLenguaSegments(l, parent)
+		
+		calcularLengua(l, parent)
+
+    //TODO:Hacer que reciba daño el personaje
+    scene.physics.add.overlap(glish.glish,l.segmentos, enemigos.recibirDanyo);
+    //console.log(l.segmentos);
+	}
+	l.time--;
+}*/
+
 export function detectarJugador(db, pj)
 {
 	db.detectado = true;
@@ -49,11 +131,32 @@ export function detectarJugador(db, pj)
 
 export function update()
 {
+	
 	Phaser.Actions.Call(scytherGroup.getChildren(),function(s)
 	{
+		var guadana = s.segmentos.getChildren()[s.segmentos.getLength()-1]
+		guadana.angle = Math.atan2(heroes.cabeza.y - guadana.y, heroes.cabeza.x - guadana.x)* 180/Math.PI;
+		if(guadana.angle > 90 || guadana.angle < -90)
+		{
+			guadana.flipY = true;
+		}
+		else
+		{
+			guadana.flipY = false;
+		}
+
+		if(s.time <= 0)
+		{
+			s.time = s.cooldown;
+			
+			calcularSegmento(s)
+		}
+		s.time--;
+
 		if(s.detectionbox.detectado && !s.transformado)
 		{
 			s.transformado = true;
+			console.log('hola')
 			//s.play('shapeshifterTransform')
 		}
 
@@ -81,7 +184,7 @@ export function update()
 		{
 			//s.play('shapeshifterWalk', false);
 			s.detectionbox.destroy();
-			s.setTexture('shapeshifterMuerto');
+			//s.setTexture('shapeshifterMuerto');
 			s.setTint(0xaaaaaa)
 			s.body.enable = false;
 		}
