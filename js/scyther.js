@@ -27,6 +27,8 @@ export function createScyther(obj)
 	//s.setTexture('shapeshifter');
 	//s.y -= 16;
 
+	s.animado=false;
+
 	s.setDepth(4);
 	s.vida = 8;
 	s.maxLong = 10;
@@ -81,7 +83,7 @@ function calcularSegmento(parent)
 			from: 0,
 			to: parent.segmentos.getLength(),
 			duration: 500,
-      		yoyo: true,
+      		//yoyo: true,
 			onUpdate: function (tween)
 			{
 				var value = tween.getValue()
@@ -91,31 +93,53 @@ function calcularSegmento(parent)
 					var temp = parent.segmentos.getLength()-1-i;
 					if(value-temp>0)
 					{
-						//parent.segmentos.getChildren()[i].x = parent.x + 8*((value-temp)*dir.x)
-
-						/*var vec = (parent.segmentos.getChildren()[i].yini * ((parent.segmentos.getLength()-i)/parent.segmentos.getLength())) + (parent.y * (i/parent.segmentos.getLength()))*/
-
 						scene.physics.moveTo(parent.segmentos.getChildren()[i],
 							parent.x + 8*((value-temp)*dir.x),
 							parent.y + ((8*((value-temp)*dir.y))),
 							20*i
 						);
-
-						//parent.segmentos.getChildren()[i].moveTo(vec + ((8*((value-temp)*dir.y)))) 
-
-
 					}
 					else
 					{
-						parent.segmentos.getChildren()[i].x = parent.segmentos.getChildren()[i].xini
-						parent.segmentos.getChildren()[i].y = parent.segmentos.getChildren()[i].yini
-						parent.segmentos.getChildren()[i].setVelocityX(0)
-						parent.segmentos.getChildren()[i].setVelocityY(0)
+						scene.physics.moveTo(parent.segmentos.getChildren()[i],
+							parent.segmentos.getChildren()[i].xini,
+							parent.segmentos.getChildren()[i].yini,
+							20*i
+						);
 					}
+					parent.animado=true
 				}
 			},
 			onComplete: function()
 			{
+				scene.tweens.addCounter({
+					from: 0,
+					to: parent.segmentos.getLength()*2,
+					duration: 750,
+					//yoyo: true,
+					onUpdate: function (tween)
+					{
+						var value = tween.getValue()
+
+						for(var i=0; i<parent.segmentos.getLength(); i++)
+						{
+							var temp = parent.segmentos.getLength()-1-i;
+							if(value-temp>0)
+							{
+								scene.physics.moveTo(parent.segmentos.getChildren()[i],
+									parent.segmentos.getChildren()[i].xini,
+									parent.segmentos.getChildren()[i].yini,
+									20*i
+								);
+							}
+							parent.animado=true
+						}
+					},
+					onComplete: function()
+					{
+						parent.animado=false
+					}
+				});
 			}
 		});
 
@@ -165,6 +189,17 @@ export function update()
 			calcularSegmento(s)
 		}
 		s.time--;
+
+		if(!s.animado)
+		{
+			for(var i=0; i<s.segmentos.getLength(); i++)
+			{
+				s.segmentos.getChildren()[i].x = s.segmentos.getChildren()[i].xini
+				s.segmentos.getChildren()[i].y = s.segmentos.getChildren()[i].yini
+				s.segmentos.getChildren()[i].setVelocityX(0)
+				s.segmentos.getChildren()[i].setVelocityY(0)
+			}
+		}
 
 		if(s.detectionbox.detectado && !s.transformado)
 		{
