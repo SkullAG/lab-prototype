@@ -291,12 +291,18 @@
                  "id":75,
                  "name":"scyther",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"maxLong",
+                         "type":"int",
+                         "value":10
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":832,
-                 "y":288
+                 "y":320
                 }, 
                 {
                  "height":0,
@@ -309,6 +315,60 @@
                  "width":0,
                  "x":880,
                  "y":-176
+                }, 
+                {
+                 "height":0,
+                 "id":77,
+                 "name":"scyther",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"maxLong",
+                         "type":"int",
+                         "value":10
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":864,
+                 "y":304
+                }, 
+                {
+                 "height":0,
+                 "id":78,
+                 "name":"scyther",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"maxLong",
+                         "type":"int",
+                         "value":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":896,
+                 "y":288
+                }, 
+                {
+                 "height":0,
+                 "id":79,
+                 "name":"scyther",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"maxLong",
+                         "type":"int",
+                         "value":20
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1248,
+                 "y":336
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -317,7 +377,7 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":77,
+ "nextobjectid":80,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.4.3",

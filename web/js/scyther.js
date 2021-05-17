@@ -1,4 +1,5 @@
 import * as mapa from './game.js';
+import * as utilidades from './utilidades.js';
 import * as boxTank from './personajes/boxTank.js';
 import * as heroes from './grupoHeroes.js';
 
@@ -21,9 +22,11 @@ export function create(allLayers)
 
 export function createScyther(obj)
 {
+	utilidades.convertToProperties(obj)
 	var s = scytherGroup.create(obj.x, obj.y, 'scyther', 3)
 	s.inmovil = false;
 	s.dano = 1;
+	s.escondido = true;
 	//s.setTexture('shapeshifter');
 	//s.y -= 16;
 
@@ -31,7 +34,15 @@ export function createScyther(obj)
 
 	s.setDepth(4);
 	s.vida = 8;
-	s.maxLong = 10;
+	if(obj.properties.maxLong != undefined && obj.properties.maxLong > 0)
+	{
+		s.maxLong = obj.properties.maxLong;
+	}
+	else
+	{
+		s.maxLong = 10;
+	}
+	
 
 	s.detectionbox = scene.add.rectangle(s.x, s.y, 200, 200);
 	scene.physics.add.existing(s.detectionbox, false);
@@ -166,11 +177,96 @@ export function detectarJugador(db, pj)
 	db.detectado = true;
 }
 
+function salir(parent)
+{
+	if(parent.escondido)
+	{
+		var guadana = parent.segmentos.getChildren()[parent.segmentos.getLength()-1]
+		var dir = new Phaser.Math.Vector2( Math.cos(guadana.angle*Math.PI/180), Math.sin(guadana.angle*Math.PI/180));
+		scene.tweens.addCounter({
+				from: 0,
+				to: parent.segmentos.getLength(),
+				duration: 500,
+				//yoyo: true,
+				onUpdate: function (tween)
+				{
+					var value = tween.getValue()
+
+					for(var i=0; i<parent.segmentos.getLength(); i++)
+					{
+						parent.segmentos.getChildren()[i].setAlpha(1);
+						parent.segmentos.getChildren()[i].enable = true;
+
+						scene.physics.moveTo(parent.segmentos.getChildren()[i],
+							parent.segmentos.getChildren()[i].xini,
+							parent.segmentos.getChildren()[i].yini,
+							20*i
+						);
+						parent.animado=true
+					}
+				},
+				onComplete: function()
+				{
+					parent.animado=false
+				}
+			});
+	}
+}
+
+function esconder(parent)
+{
+	if(parent.escondido)
+	{
+		var guadana = parent.segmentos.getChildren()[parent.segmentos.getLength()-1]
+		var dir = new Phaser.Math.Vector2( Math.cos(guadana.angle*Math.PI/180), Math.sin(guadana.angle*Math.PI/180));
+		scene.tweens.addCounter({
+				from: 0,
+				to: parent.segmentos.getLength(),
+				duration: 500,
+				//yoyo: true,
+				onUpdate: function (tween)
+				{
+					var value = tween.getValue()
+
+					for(var i=0; i<parent.segmentos.getLength(); i++)
+					{
+						scene.physics.moveTo(parent.segmentos.getChildren()[i],
+							parent.x,
+							parent.y,
+							20*i
+						);
+						parent.animado=true
+					}
+				},
+				onComplete: function()
+				{
+					for(var i=0; i<parent.segmentos.getLength(); i++)
+					{
+						parent.segmentos.getChildren()[i].setAlpha(0);
+						parent.segmentos.getChildren()[i].enable = false;
+					}
+					parent.animado=false
+				}
+			});
+	}
+}
+
 export function update()
 {
 	
 	Phaser.Actions.Call(scytherGroup.getChildren(),function(s)
 	{
+		if(Phaser.Math.Distance.BetweenPoints(s, heroes.cabeza) <= s.maxLong * 8)
+		{
+			salir(s);
+			s.escondido = false;
+		}
+		else
+		{
+			esconder(s);
+			s.escondido = true;
+		}
+
 		var guadana = s.segmentos.getChildren()[s.segmentos.getLength()-1]
 		guadana.angle = Math.atan2(heroes.cabeza.y - s.y, heroes.cabeza.x - s.x)* 180/Math.PI;
 		if(guadana.angle > 90 || guadana.angle < -90)
@@ -182,7 +278,7 @@ export function update()
 			guadana.flipY = false;
 		}
 
-		if(s.time <= 0)
+		if(s.time <= 0 && s.escondido == false && !s.animado)
 		{
 			s.time = s.cooldown;
 			
